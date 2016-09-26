@@ -2,12 +2,11 @@
 #include "PanionOwnedStates.h"
 
 Panion::Panion(int id):BaseGameEntity(id),
-                     m_Location(near),
-                     m_iGoldCarried(0),
-                     m_iMoneyInBank(0),
-                     m_iThirst(0),
-                     m_iFatigue(0),
-                     m_pCurrentState(GoHomeAndSleepTilRested::Instance())
+                     m_Location(combat),
+                     m_ipHP(0),
+                     m_icomHP(0),
+                     m_idanger(0),
+                     m_pCurrentState(aggro::Instance())
                                                                   
 {}
 
@@ -31,25 +30,31 @@ void Panion::ChangeState(State* pNewState)
 
 
 //-----------------------------------------------------------------------------
-void Panion::AddToGoldCarried(const int val)
+void Panion::DangerRise(const int val)
 {
-  m_iGoldCarried += val;
+  m_idanger += val;
 
-  if (m_iGoldCarried < 0) m_iGoldCarried = 0;
+  if (m_idanger < 0) m_idanger = 0;
 }
 
 
 //-----------------------------------------------------------------------------
-void Panion::AddToWealth(const int val)
+void Panion::PlayerDamageCheck(const int val)
 {
-  m_iMoneyInBank += val;
+  m_ipHP += val;
 
-  if (m_iMoneyInBank < 0) m_iMoneyInBank = 0;
+  if (m_ipHP < 0) m_ipHP = 0;
+}
+void Panion::CompDamageCheck(const int val)
+{
+  m_icomHP += val;
+
+  if (m_icomHP < 0) m_icomHP = 0;
 }
 
 
 //-----------------------------------------------------------------------------
-bool Panion::Thirsty()const
+/*bool Panion::Thirsty()const
 {
   if (m_iThirst >= ThirstLevel){return true;}
 
@@ -78,4 +83,5 @@ bool Panion::Fatigued()const
   }
 
   return false;
-}
+}*/
+

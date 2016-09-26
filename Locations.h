@@ -4,9 +4,8 @@
 
 enum location_type
 {
-  near,
-  far,
-  battle
+  combat,
+  nonCombat
 };
 
 

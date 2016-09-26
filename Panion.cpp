@@ -2,7 +2,7 @@
 #include "PanionOwnedStates.h"
 
 Panion::Panion(int id):BaseGameEntity(id),
-                     m_Location(shack),
+                     m_Location(near),
                      m_iGoldCarried(0),
                      m_iMoneyInBank(0),
                      m_iThirst(0),
